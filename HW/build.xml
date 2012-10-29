@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="HW.makejar" default="makejar" basedir=".">
+  <target name ="makejar" description="Create a jar for the HW project">
+    <jar jarfile="HelloWorld.jar" includes="*.class" basedir="bin"/>
+  </target>
+
+	<target name="checkstyle" description="Generate checkstyle report">
+		<taskdef resource="checkstyletask.properties">
+			<classpath refid="compile.class.pathtest"/>
+		</taskdef>
+
+	        <checkstyle config="$/home/aatmaca/workspace/HW/newtention_cs5.xml" failOnViolation="false">
+	            <fileset dir="${src}">
+	                <include name="**/*.java" />
+	            </fileset>
+	            <formatter type="xml" toFile="checkstyle-result.xml"/>
+		</checkstyle>
+	</target>
+
+	<path id="compile.class.pathtest">
+	    <pathelement location="${checkstyle.dir}/checkstyle-5.5-all.jar"/>
+	    <pathelement location="${checkstyle.dir}/checkstyle-5.5.jar"/>
+	    <pathelement location="${checkstyle.dir}/pmd-3.9.jar"/>
+	    <pathelement location="${checkstyle.dir}/asm-3.0.jar"/>
+	    <pathelement location="${checkstyle.dir}/backport-util-concurrent-2.1.jar"/>
+	    <pathelement location="${checkstyle.dir}/jaxen-1.1-beta-10.jar"/>
+	    <pathelement location="${checkstyle.dir}/saxpath-1.0-FCS.jar"/>
+	</path>
+</project>
